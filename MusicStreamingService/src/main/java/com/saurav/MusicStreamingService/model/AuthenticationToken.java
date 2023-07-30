@@ -24,9 +24,6 @@ public class AuthenticationToken {
     @JoinColumn(name = "user_Id")
     User user;
 
-    @OneToOne
-    @JoinColumn(name = "admin_Id")
-    Admin admin;
     //create a parameterized constructor which takes user as an argument
     public AuthenticationToken(User user)
     {
@@ -34,10 +31,5 @@ public class AuthenticationToken {
         this.tokenValue = UUID.randomUUID().toString();
         this.tokenCreationDateTime = LocalDateTime.now();
     }
-    public AuthenticationToken(Admin admin)
-    {
-        this.admin = admin;
-        this.tokenValue = UUID.randomUUID().toString();
-        this.tokenCreationDateTime = LocalDateTime.now();
-    }
+
 }

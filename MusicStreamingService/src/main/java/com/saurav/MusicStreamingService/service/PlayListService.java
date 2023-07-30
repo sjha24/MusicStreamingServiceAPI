@@ -1,13 +1,13 @@
 package com.saurav.MusicStreamingService.service;
 
-import com.saurav.MusicStreamingService.dto.PlaylistOutput;
-import com.saurav.MusicStreamingService.model.AuthenticationToken;
 import com.saurav.MusicStreamingService.model.PlayList;
-import com.saurav.MusicStreamingService.model.Song;
 import com.saurav.MusicStreamingService.model.User;
 import com.saurav.MusicStreamingService.repository.PlayListRepo;
 import com.saurav.MusicStreamingService.repository.SongRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class PlayListService {
         return existUser.getUserName() + " playlist Added In Your Account";
     }
 
-    public List<PlayList> getAllPlaylist(User existUser) {
+    public List<PlayList> getAllPlaylist(User existUser){
         return playListRepo.findByUser(existUser);
     }
 
@@ -70,4 +70,11 @@ public class PlayListService {
         return "This playlist Id "+playlistID+" is not exist in your account";
     }
 
+    public List<PlayList> getAllPLaylist(int pageNumber) {
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Page<PlayList>pagePlayLists = playListRepo.findAll(pageable);
+        return pagePlayLists.getContent();
+//        return playListRepo.findAll();
+    }
 }

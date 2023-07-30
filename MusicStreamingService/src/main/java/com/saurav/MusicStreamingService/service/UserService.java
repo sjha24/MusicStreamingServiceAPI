@@ -7,7 +7,10 @@ import com.saurav.MusicStreamingService.repository.AuthenticationTokenRepo;
 import com.saurav.MusicStreamingService.repository.UserRepo;
 import com.saurav.MusicStreamingService.util.PasswordEncrypter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -102,4 +105,8 @@ public class UserService {
         return playListService.deletePlaylistByID(playlistID,existUser);
     }
 
+
+    public List<PlayList> getAllPLaylist(Integer pageNumber) {
+        return playListService.getAllPLaylist(pageNumber);
+    }
 }

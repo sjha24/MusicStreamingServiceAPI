@@ -8,5 +8,4 @@ public interface AuthenticationTokenRepo extends JpaRepository<AuthenticationTok
     AuthenticationToken findFirstByTokenValue(String authTokenValue);
 
     AuthenticationToken findFirstByUser(User user);;
-    AuthenticationToken findFirstByAdmin(Admin existAdmin);
 }

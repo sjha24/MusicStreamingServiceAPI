@@ -69,4 +69,12 @@ public class UserController {
         return "Unauthorized activity deducted";
     }
 
+    @GetMapping("all/playlist")
+    public List<PlayList>getAllPLaylist(@RequestParam String email, @RequestParam String authenticationToken,@RequestParam Integer pageNumber){
+        if(authenticationTokenService.authenticate(email,authenticationToken)){
+            return userService.getAllPLaylist(pageNumber);
+        }
+        return null;
+    }
+
 }
